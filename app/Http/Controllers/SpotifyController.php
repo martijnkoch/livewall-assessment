@@ -68,11 +68,11 @@ class SpotifyController extends Controller
         $artists = $bearer
             ->get($topArtists)
             ->json();
-
+        /*
         Artist::create([
             'name' => $artists['items'],
         ]);
-
+        */
 
         //Return the top songs
         $tracks = $bearer
