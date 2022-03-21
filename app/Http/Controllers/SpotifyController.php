@@ -20,7 +20,7 @@ class SpotifyController extends Controller
 
     public function login()
     {
-        //Scopes for all the api data I want to return
+        //Scopes for all the API data I want 
         $scopes = 'user-read-private user-read-email user-top-read';
         return redirect(
             'https://accounts.spotify.com/authorize' .
