@@ -46,7 +46,12 @@ tr td img{
     width: 150px;
     border-radius: 50%;
 }
+/* Tracks */
 
+.tracks {
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+}
 /* Social media buttons */
 ul.share-buttons{
     list-style: none;
@@ -55,8 +60,11 @@ ul.share-buttons{
   
   ul.share-buttons li{
     display: inline;
+    margin-left: 20px;
   }
-  
+  ul.share-buttons li:first-child{
+      margin-left: 0px;
+  }
   ul.share-buttons .sr-only{
     position: absolute;
     clip: rect(1px 1px 1px 1px);
@@ -67,3 +75,5 @@ ul.share-buttons{
     width: 1px;
     overflow: hidden;
   }
+
+

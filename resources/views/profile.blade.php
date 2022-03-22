@@ -3,39 +3,28 @@
 @section('content')
     <div class="container" id="app">
 
-        <h2 class="text-white">Welcome {{ $profile['display_name'] }}!</h2>
-        <img class="profile-pic" src="{{ $profile['images'][0]['url'] }}" />
+        @if (!empty($profile['display_name']))
+            <h2 class="text-white">Welcome {{ $profile['display_name'] }}!</h2>
+            <img class="profile-pic" src="{{ $profile['images'][0]['url'] }}" />
+        @else
+            <h2 class="text-white">Welcome user!</h2>
+        @endif
 
-        <div class="row gy-5">
-            <h2 class="text-white">Your top 10 artists</h2>
+        @include('includes.artists');
 
-            <input type="text" id="seachInput" onkeyup="filterGenres()" placeholder="Filter by genre.."
-                title="Type in a genre name">
-            <table id="artistsTable">
-                <tr class="header">
-                    <th></th>
-                    <th>Artist</th>
-                    <th>Genre</th>
-                    <th>Open artist on Spotify</th>
-                </tr>
-                @foreach ($artists['items'] as $artist)
-                    <tr>
-                        <td width="20%"><img src="{{ $artist['images'][0]['url'] }}" /> </td>
-                        <td>{{ $artist['name'] }}</td>
-                        <td>{{ ucfirst($artist['genres'][0]) }}</td>
-                        <td><a href="{{ $artist['external_urls']['spotify'] }}" target="_blank">Open artist Page</a></td>
-                    </tr>
-                @endforeach
-            </table>
-        </div>
-
-
-        <div class="row">
-            <h2 class="text-white">Your top 10 tracks</h2>
+        <div class="row tracks">
+            <h2 class="text-white">Your top 10 tracks all time</h2>
             @foreach ($tracks['items'] as $track)
-                <a href="{{ $track['external_urls']['spotify'] }}">
-                    <h3>{{ $track['name'] }}</h3>
-                </a>
+                <h3 class="text-white">{{ $track['name'] }} <span> - <a href="{{ $track['external_urls']['spotify'] }}"
+                            target="_blank">
+                            Open track in Spotify
+                        </a></span></h3>
+
+                <p class="text-white mb-1">Preview song if available</p>
+                <audio controls>
+                    <source src="{{ $track['preview_url'] }}" type="audio/ogg">
+                    Your browser does not support the audio element.
+                </audio>
             @endforeach
         </div>
 
