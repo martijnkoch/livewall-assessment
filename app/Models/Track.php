@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class track extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+
+    protected $casts = [
+        'tracks' => 'json'
+    ];
+
+    protected $fillable = [
+        'name',
+        'url'
+    ];
 }

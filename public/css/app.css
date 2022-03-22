@@ -33,8 +33,11 @@ body {
 input[id=seachInput]{
     padding: .7em;
 }
-th, td {
+th, td, td a{
     color: white;
+}
+td a {
+    text-decoration: none;
 }
 tr td {
     padding-bottom: 2rem;

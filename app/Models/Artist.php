@@ -11,7 +11,12 @@ class Artist extends Model
 
     public $timestamps = false;
 
+    protected $casts = [
+        'artists' => 'json'
+    ];
+
     protected $fillable = [
-        'name'
+        'name',
+        'url'
     ];
 }

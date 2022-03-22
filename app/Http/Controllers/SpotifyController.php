@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artist;
+use App\Models\Track;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -10,12 +11,13 @@ class SpotifyController extends Controller
 {
     private $clientId;
     private $clientSecret;
-    private $redirectUri = 'http://127.0.0.1:8000/profile/';
+    private $redirectUri;
 
     public function __construct()
     {
         $this->clientId = config('spotify.clientId');
         $this->clientSecret = config('spotify.clientSecret');
+        $this->redirectUri = config('spotify.redirectUri');
     }
 
     public function login()
@@ -68,20 +70,41 @@ class SpotifyController extends Controller
         $artists = $bearer
             ->get($topArtists)
             ->json();
-        /*
-        Artist::create([
-            'name' => $artists['items'],
-        ]);
-        */
 
-        //Return the top songs
+        foreach ($artists as $artist) {
+            foreach ((array)$artist as $value) {
+                if (is_array($value)) {
+                    $artist = new Artist;
+                    $artist->name = $value['name'];
+                    $artist->url = $value['href'];
+                    $artist->save();
+                }
+            }
+        }
+
+        //Return the top songs and save to the database
         $tracks = $bearer
             ->get($topTracks)
             ->json();
+
+        foreach ($tracks as $track) {
+            foreach ((array)$track as $value) {
+                if (is_array($value)) {
+                    $track = new Track;
+                    $track->name = $value['name'];
+                    $track->url = $value['external_urls']['spotify'];
+                    $track->save();
+                }
+            }
+        }
 
         return view('profile')
             ->with(['profile' => $profile])
             ->with(['artists' => $artists])
             ->with(['tracks' => $tracks]);
+    }
+
+    public function storeArtists()
+    {
     }
 }
