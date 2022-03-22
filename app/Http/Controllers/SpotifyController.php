@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Artist;
 use App\Models\Track;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class SpotifyController extends Controller
@@ -102,9 +101,5 @@ class SpotifyController extends Controller
             ->with(['profile' => $profile])
             ->with(['artists' => $artists])
             ->with(['tracks' => $tracks]);
-    }
-
-    public function storeArtists()
-    {
     }
 }
