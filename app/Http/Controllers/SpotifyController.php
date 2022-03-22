@@ -82,7 +82,7 @@ class SpotifyController extends Controller
             }
         }
 
-        //Return the top songs and save to the database
+        //Return the top 10 songs and save to the database
         $tracks = $bearer
             ->get($topTracks)
             ->json();
