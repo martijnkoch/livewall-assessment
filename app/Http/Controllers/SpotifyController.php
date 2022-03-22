@@ -58,8 +58,8 @@ class SpotifyController extends Controller
 
         //Spotify api endpoints
         $profileInfo = 'https://api.spotify.com/v1/me';
-        $topArtists = 'https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=10&offset=5';
-        $topTracks = 'https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10&offset=5';
+        $topArtists = 'https://api.spotify.com/v1/me/top/artists?time_range=long_term&limit=10&offset=0';
+        $topTracks = 'https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10&offset=0';
 
         //Return the profile info
         $profile = $bearer
